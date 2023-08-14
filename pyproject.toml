@@ -7,6 +7,9 @@ license = "MIT"
 readme = "README.md"
 packages = [{include = "ro_crate_validate"}]
 
+[tool.poetry.scripts]
+validate="ro_crate_validate.ro_crate_validate:cli"
+
 [tool.poetry.dependencies]
 python = "^3.9"
 rocrate = "^0.8.0"
