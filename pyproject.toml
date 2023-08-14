@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "ro-crate-validate"
+version = "0.1.0"
+description = "RO-Crate validation and linting"
+authors = ["Mike Lynch <m.lynch@sydney.edu.au>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "ro_crate_validate"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+rocrate = "^0.8.0"
+PyLD = "^2.0.3"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
