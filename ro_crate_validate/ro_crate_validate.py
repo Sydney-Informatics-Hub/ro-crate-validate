@@ -10,11 +10,11 @@ from rocrate.rocrate import ROCrate
 
 def load_crate(crate_dir):
     try:
-        crate = ROCrate(crate_dir)
+        return ROCrate(crate_dir)
     except json.decoder.JSONDecodeError as e:
         raise ROCrateJSONException("ro-crate-metadata.json is not valid JSON")
-    except Exception as e:
-        raise ROCrateException("some other exception")
+    except ValueError as e:
+        raise ROCrateException(e)
 
 def check_json_ld(crate):
     pass
@@ -27,7 +27,11 @@ def check_root_entity(crate):
 
 
 def ro_crate_validate(crate_dir):
-    load_crate(crate_dir)
+    crate = load_crate(crate_dir)
+    size = len(list(crate.get_entities()))
+    print(f"Loaded crate with {size} entities")
+
+
 
 def cli():
     ap = argparse.ArgumentParser("ro-crate-validate")
