@@ -17,11 +17,15 @@ def load_crate(crate_dir):
         raise ROCrateException(e)
 
 def check_json_ld(crate):
+    """Later"""
     pass
 
 
 def check_root_entity(crate):
-    pass
+    metadata_descriptor = crate.dereference('ro-crate-metadata.json')
+    root_id = metadata_descriptor["about"]
+    root_entity = crate.dereference(root_id["@id"])
+    return root_entity
 
 
 
@@ -30,7 +34,11 @@ def ro_crate_validate(crate_dir):
     crate = load_crate(crate_dir)
     size = len(list(crate.get_entities()))
     print(f"Loaded crate with {size} entities")
-
+    check_json_ld(crate)
+    root = check_root_entity(crate)
+    print(f"Got root entity")
+    print(root["name"])
+    print(root["description"])
 
 
 def cli():
